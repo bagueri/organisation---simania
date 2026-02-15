@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الإعدادات - سيمانيا</title>
+    <meta name="description" content="إعدادات حسابك في منصة سيمانيا">
+    <meta name="keywords" content="إعدادات, حساب, ملف شخصي, سيمانيا">
+    <meta name="author" content="Simania">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/icons/favicon.png">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/style.css">
+    <link rel="stylesheet" href="assets/responsive.css">
+    
+    <!-- Firebase SDK -->
+    <script type="module" src="assets/firebase-config.js"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <span class="logo-icon">🎮</span>
+                <span class="logo-text">سيمانيا</span>
+            </a>
+            
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="nav-link">الرئيسية</a></li>
+                <li><a href="games.html" class="nav-link">الألعاب</a></li>
+                <li><a href="coupon.html" class="nav-link">الكوبونات</a></li>
+                <li><a href="contact.html" class="nav-link">اتصل بنا</a></li>
+                <li class="mobile-only" id="mobileAuth">
+                    <a href="login.html" class="nav-link">تسجيل الدخول</a>
+                </li>
+            </ul>
+            
+            <div class="nav-actions">
+                <div class="user-menu" id="userMenu" style="display: none;">
+                    <button class="user-btn" id="userBtn">
+                        <img src="assets/icons/default-avatar.png" alt="Profile" id="userAvatar">
+                        <span id="userName">المستخدم</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="dropdown-menu" id="dropdownMenu">
+                        <a href="settings.html"><i class="fas fa-cog"></i> الإعدادات</a>
+                        <a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> تسجيل الخروج</a>
+                    </div>
+                </div>
+                <a href="login.html" class="btn-login" id="loginBtn">تسجيل الدخول</a>
+                <button class="mobile-toggle" id="mobileToggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1 data-aos="fade-up">الإعدادات</h1>
+            <p data-aos="fade-up" data-aos-delay="200">قم بتخصيص تجربتك على منصة سيمانيا</p>
+        </div>
+    </section>
+
+    <!-- Settings Section -->
+    <section class="settings-section">
+        <div class="container">
+            <div class="settings-grid">
+                <!-- Settings Menu -->
+                <div class="settings-menu" data-aos="fade-up">
+                    <div class="settings-menu-item active" data-target="profile">
+                        <i class="fas fa-user"></i>
+                        <span>الملف الشخصي</span>
+                    </div>
+                    <div class="settings-menu-item" data-target="account">
+                        <i class="fas fa-cog"></i>
+                        <span>إعدادات الحساب</span>
+                    </div>
+                    <div class="settings-menu-item" data-target="notifications">
+                        <i class="fas fa-bell"></i>
+                        <span>الإشعارات</span>
+                    </div>
+                    <div class="settings-menu-item" data-target="privacy">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>الخصوصية</span>
+                    </div>
+                    <div class="settings-menu-item" data-target="security">
+                        <i class="fas fa-lock"></i>
+                        <span>الأمان</span>
+                    </div>
+                </div>
+                
+                <!-- Settings Content -->
+                <div class="settings-content" data-aos="fade-up" data-aos-delay="200">
+                    <!-- Profile Settings -->
+                    <div class="settings-panel active" id="profile">
+                        <h2>الملف الشخصي</h2>
+                        
+                        <div class="settings-group">
+                            <h3>معلومات الملف الشخصي</h3>
+                            
+                            <div class="form-group">
+                                <label>الصورة الشخصية</label>
+                                <div class="profile-image-upload">
+                                    <img src="https://i.pravatar.cc/150?img=0" alt="Profile" id="previewAvatar">
+                                    <button class="btn btn-outline" onclick="document.getElementById('avatarInput').click()">
+                                        <i class="fas fa-camera"></i> تغيير الصورة
+                                    </button>
+                                    <input type="file" id="avatarInput" accept="image/*" style="display: none;">
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>الاسم</label>
+                                <input type="text" id="profileName" placeholder="أدخل اسمك">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>البريد الإلكتروني</label>
+                                <input type="email" id="profileEmail" placeholder="أدخل بريدك الإلكتروني" disabled>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>رقم الهاتف</label>
+                                <input type="tel" id="profilePhone" placeholder="أدخل رقم هاتفك">
+                            </div>
+                            
+                            <button class="btn btn-primary" onclick="saveProfile()">
+                                <i class="fas fa-save"></i> حفظ التغييرات
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Account Settings -->
+                    <div class="settings-panel" id="account">
+                        <h2>إعدادات الحساب</h2>
+                        
+                        <div class="settings-group">
+                            <h3>تفضيلات الحساب</h3>
+                            
+                            <div class="settings-item">
+                                <label>اللغة</label>
+                                <select id="languageSelect">
+                                    <option value="ar">العربية</option>
+                                    <option value="en">English</option>
+                                </select>
+                            </div>
+                            
+                            <div class="settings-item">
+                                <label>المنطقة الزمنية</label>
+                                <select id="timezoneSelect">
+                                    <option value="Asia/Riyadh">الرياض (GMT+3)</option>
+                                    <option value="UTC">توقيت غرينتش (GMT)</option>
+                                </select>
+                            </div>
+                            
+                            <div class="settings-item">
+                                <label>العملة المفضلة</label>
+                                <select id="currencySelect">
+                                    <option value="SAR">ريال سعودي</option>
+                                    <option value="USD">دولار أمريكي</option>
+                                    <option value="EUR">يورو</option>
+                                    <option value="MAD">الدرهم</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <button class="btn btn-primary" onclick="saveAccountSettings()">
+                            <i class="fas fa-save"></i> حفظ التغييرات
+                        </button>
+                    </div>
+                    
+                    <!-- Notifications Settings -->
+                    <div class="settings-panel" id="notifications">
+                        <h2>الإشعارات</h2>
+                        
+                        <div class="settings-group">
+                            <h3>تفضيلات الإشعارات</h3>
+                            
+                            <div class="settings-item">
+                                <label>الإشعارات البريدية</label>
+                                <label class="toggle-switch">
+                                    <input type="checkbox" id="emailNotifications" checked>
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                            
+                            <div class="settings-item">
+                                <label>إشعارات العروض والخصومات</label>
+                                <label class="toggle-switch">
+                                    <input type="checkbox" id="offerNotifications" checked>
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                            
+                            <div class="settings-item">
+                                <label>إشعارات التحديثات</label>
+                                <label class="toggle-switch">
+                                    <input type="checkbox" id="updateNotifications" checked>
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                            
+                            <div class="settings-item">
+                                <label>إشعارات الألعاب الجديدة</label>
+                                <label class="toggle-switch">
+                                    <input type="checkbox" id="newGameNotifications" checked>
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <button class="btn btn-primary" onclick="saveNotificationSettings()">
+                            <i class="fas fa-save"></i> حفظ التغييرات
+                        </button>
+                    </div>
+                    
+                    <!-- Privacy Settings -->
+                    <div class="settings-panel" id="privacy">
+                        <h2>الخصوصية</h2>
+                        
+                        <div class="settings-group">
+                            <h3>إعدادات الخصوصية</h3>
+                            
+                            <div class="settings-item">
+                                <label>الملف العام</label>
+                                <label class="toggle-switch">
+                                    <input type="checkbox" id="publicProfile" checked>
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                            
+                            <div class="settings-item">
+                                <label>إظهار التقييمات</label>
+                                <label class="toggle-switch">
+                                    <input type="checkbox" id="showReviews" checked>
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                            
+                            <div class="settings-item">
+                                <label>السماح بالمتابعة</label>
+                                <label class="toggle-switch">
+                                    <input type="checkbox" id="allowFollow" checked>
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <button class="btn btn-primary" onclick="savePrivacySettings()">
+                            <i class="fas fa-save"></i> حفظ التغييرات
+                        </button>
+                    </div>
+                    
+                    <!-- Security Settings -->
+                    <div class="settings-panel" id="security">
+                        <h2>الأمان</h2>
+                        
+                        <div class="settings-group">
+                            <h3>تغيير كلمة المرور</h3>
+                            
+                            <div class="form-group">
+                                <label>كلمة المرور الحالية</label>
+                                <input type="password" id="currentPassword" placeholder="أدخل كلمة المرور الحالية">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>كلمة المرور الجديدة</label>
+                                <input type="password" id="newPassword" placeholder="أدخل كلمة المرور الجديدة">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>تأكيد كلمة المرور</label>
+                                <input type="password" id="confirmPassword" placeholder="أعد إدخال كلمة المرور">
+                            </div>
+                            
+                            <button class="btn btn-primary" onclick="changePassword()">
+                                <i class="fas fa-key"></i> تغيير كلمة المرور
+                            </button>
+                        </div>
+                        
+                        <div class="settings-group">
+                            <h3>المصادقة الثنائية</h3>
+                            
+                            <div class="settings-item">
+                                <label>تفعيل المصادقة الثنائية</label>
+                                <label class="toggle-switch">
+                                    <input type="checkbox" id="twoFactorAuth">
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="settings-group">
+                            <h3>الجلسات النشطة</h3>
+                            <p style="color: var(--text-secondary); margin-bottom: 15px;">تحكم في الأجهزة المتصلة بحسابك</p>
+                            
+                            <div class="active-sessions">
+                                <div class="session-item">
+                                    <i class="fas fa-desktop"></i>
+                                    <div>
+                                        <h4>الجهاز الحالي</h4>
+                                        <p>المتصفح - نشط الآن</p>
+                                    </div>
+                                    <span class="badge">حالي</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <button class="btn btn-danger" onclick="logoutAllDevices()">
+                            <i class="fas fa-sign-out-alt"></i> تسجيل الخروج من جميع الأجهزة
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <a href="index.html" class="footer-logo">
+                        <span class="logo-icon">🎮</span>
+                        <span class="logo-text">سيمانيا</span>
+                    </a>
+                    <p>منصتك الأولى للألعاب والترفيه. نوفر لك أفضل الألعاب مع تقييمات حقيقية من مجتمع اللاعبين.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>روابط سريعة</h4>
+                    <ul>
+                        <li><a href="index.html">الرئيسية</a></li>
+                        <li><a href="games.html">الألعاب</a></li>
+                        <li><a href="coupon.html">الكوبونات</a></li>
+                        <li><a href="contact.html">اتصل بنا</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>المعلومات</h4>
+                    <ul>
+                        <li><a href="privacy.html">سياسة الخصوصية</a></li>
+                        <li><a href="#">الشروط والأحكام</a></li>
+                        <li><a href="#">الأسئلة الشائعة</a></li>
+                        <li><a href="#">الدعم الفني</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>اتصل بنا</h4>
+                    <ul class="contact-info">
+                        <li><i class="fas fa-envelope"></i> info@simania.com</li>
+                        <li><i class="fas fa-phone"></i> +1234567890</li>
+                        <li><i class="fas fa-map-marker-alt"></i> عالم الإنترنت</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 سيمانيا. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast Notifications -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loader"></div>
+    </div>
+
+    <!-- AOS Animation Script -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <!-- Main JavaScript -->
+    <script type="module" src="assets/index.js"></script>
+    
+    <!-- Auth JavaScript -->
+    <script type="module" src="assets/auth.js"></script>
+    
+    <!-- Settings JavaScript -->
+    <script>
+        // Settings menu toggle
+        const menuItems = document.querySelectorAll('.settings-menu-item');
+        const panels = document.querySelectorAll('.settings-panel');
+        
+        menuItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const target = item.dataset.target;
+                
+                // Remove active class from all
+                menuItems.forEach(m => m.classList.remove('active'));
+                panels.forEach(p => p.classList.remove('active'));
+                
+                // Add active class to clicked
+                item.classList.add('active');
+                document.getElementById(target).classList.add('active');
+            });
+        });
+        
+        // Save functions
+        function saveProfile() {
+            showToast('تم حفظ الملف الشخصي بنجاح', 'success');
+        }
+        
+        function saveAccountSettings() {
+            showToast('تم حفظ إعدادات الحساب بنجاح', 'success');
+        }
+        
+        function saveNotificationSettings() {
+            showToast('تم حفظ إعدادات الإشعارات بنجاح', 'success');
+        }
+        
+        function savePrivacySettings() {
+            showToast('تم حفظ إعدادات الخصوصية بنجاح', 'success');
+        }
+        
+        function changePassword() {
+            const currentPassword = document.getElementById('currentPassword').value;
+            const newPassword = document.getElementById('newPassword').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            
+            if (!currentPassword || !newPassword || !confirmPassword) {
+                showToast('يرجى ملء جميع الحقول', 'error');
+                return;
+            }
+            
+            if (newPassword !== confirmPassword) {
+                showToast('كلمات المرور غير متطابقة', 'error');
+                return;
+            }
+            
+            if (newPassword.length < 6) {
+                showToast('يجب أن تكون كلمة المرور 6 أحرف على الأقل', 'error');
+                return;
+            }
+            
+            showToast('تم تغيير كلمة المرور بنجاح', 'success');
+            
+            // Clear fields
+            document.getElementById('currentPassword').value = '';
+            document.getElementById('newPassword').value = '';
+            document.getElementById('confirmPassword').value = '';
+        }
+        
+        function logoutAllDevices() {
+            if (confirm('هل أنت متأكد من تسجيل الخروج من جميع الأجهزة؟')) {
+                showToast('تم تسجيل الخروج من جميع الأجهزة', 'success');
+            }
+        }
+        
+        // Avatar preview
+        const avatarInput = document.getElementById('avatarInput');
+        const previewAvatar = document.getElementById('previewAvatar');
+        
+        if (avatarInput) {
+            avatarInput.addEventListener('change', function(e) {
+                const file = e.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        previewAvatar.src = e.target.result;
+                    }
+                    reader.readAsDataURL(file);
+                }
+            });
+        }
+        
+        function showToast(message, type = 'info') {
+            const toastContainer = document.getElementById('toastContainer');
+            if (!toastContainer) return;
+            
+            const toast = document.createElement('div');
+            toast.className = `toast ${type}`;
+            toast.innerHTML = `
+                <i class="fas fa-${type === 'success' ? 'check-circle' : type === 'error' ? 'exclamation-circle' : 'info-circle'}"></i>
+                <span>${message}</span>
+            `;
+            
+            toastContainer.appendChild(toast);
+            
+            setTimeout(() => {
+                toast.remove();
+            }, 5000);
+        }
+    </script>
+</body>
+</html>

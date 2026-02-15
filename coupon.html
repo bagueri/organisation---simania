@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الكوبونات - سيمانيا</title>
+    <meta name="description" content="احصل على خصومات وكوبونات حصرية لأفضل الألعاب على منصة سيمانيا">
+    <meta name="keywords" content="كوبونات, خصومات, عروض, سيمانيا">
+    <meta name="author" content="Simania">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/icons/favicon.png">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/style.css">
+    <link rel="stylesheet" href="assets/responsive.css">
+    
+    <!-- Firebase SDK -->
+    <script type="module" src="assets/firebase-config.js"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <span class="logo-icon">🎮</span>
+                <span class="logo-text">سيمانيا</span>
+            </a>
+            
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="nav-link">الرئيسية</a></li>
+                <li><a href="games.html" class="nav-link">الألعاب</a></li>
+                <li><a href="coupon.html" class="nav-link active">الكوبونات</a></li>
+                <li><a href="contact.html" class="nav-link">اتصل بنا</a></li>
+                <li class="mobile-only" id="mobileAuth">
+                    <a href="login.html" class="nav-link">تسجيل الدخول</a>
+                </li>
+            </ul>
+            
+            <div class="nav-actions">
+                <div class="user-menu" id="userMenu" style="display: none;">
+                    <button class="user-btn" id="userBtn">
+                        <img src="assets/icons/default-avatar.png" alt="Profile" id="userAvatar">
+                        <span id="userName">المستخدم</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="dropdown-menu" id="dropdownMenu">
+                        <a href="settings.html"><i class="fas fa-cog"></i> الإعدادات</a>
+                        <a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> تسجيل الخروج</a>
+                    </div>
+                </div>
+                <a href="login.html" class="btn-login" id="loginBtn">تسجيل الدخول</a>
+                <button class="mobile-toggle" id="mobileToggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1 data-aos="fade-up">الكوبونات <span class="highlight">الحصرية</span></h1>
+            <p data-aos="fade-up" data-aos-delay="200">احصل على خصومات مميزة وكوبونات حصرية لأفضل الألعاب</p>
+        </div>
+    </section>
+
+    <!-- Coupons Section -->
+    <section class="coupons-section">
+        <div class="container">
+            <div class="coupons-grid">
+                <!-- Coupon 1 -->
+                <div class="coupon-card" data-aos="fade-up">
+                    <div class="coupon-icon">
+                        <i class="fas fa-gift"></i>
+                    </div>
+                    <div class="coupon-info">
+                        <h3>خصم 50% على جميع الألعاب</h3>
+                        <p>خصم حصري جديد على جميع ألعاب الأكشن والمغامرة</p>
+                        <span class="coupon-code">SIMANIA50</span>
+                    </div>
+                    <div class="coupon-discount">-50%</div>
+                    <button class="coupon-copy" onclick="copyCoupon('SIMANIA50')">
+                        <i class="fas fa-copy"></i> نسخ
+                    </button>
+                </div>
+                
+                <!-- Coupon 2 -->
+                <div class="coupon-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="coupon-icon">
+                        <i class="fas fa-gamepad"></i>
+                    </div>
+                    <div class="coupon-info">
+                        <h3>لعبة مجانية</h3>
+                        <p>احصل على لعبة مجانية عند شرائك أي لعبة</p>
+                        <span class="coupon-code">FREEGAME</span>
+                    </div>
+                    <div class="coupon-discount">مجاناً</div>
+                    <button class="coupon-copy" onclick="copyCoupon('FREEGAME')">
+                        <i class="fas fa-copy"></i> نسخ
+                    </button>
+                </div>
+                
+                <!-- Coupon 3 -->
+                <div class="coupon-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="coupon-icon">
+                        <i class="fas fa-percentage"></i>
+                    </div>
+                    <div class="coupon-info">
+                        <h3>خصم 30% للعضوية الجديدة</h3>
+                        <p>خصم خاص لأعضاء الجدد في منصة سيمانيا</p>
+                        <span class="coupon-code">NEWUSER30</span>
+                    </div>
+                    <div class="coupon-discount">-30%</div>
+                    <button class="coupon-copy" onclick="copyCoupon('NEWUSER30')">
+                        <i class="fas fa-copy"></i> نسخ
+                    </button>
+                </div>
+                
+                <!-- Coupon 4 -->
+                <div class="coupon-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="coupon-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="coupon-info">
+                        <h3>نقاط إضافية</h3>
+                        <p>احصل على ضعف النقاط عند كل عملية شراء</p>
+                        <span class="coupon-code">DOUBLEPOINTS</span>
+                    </div>
+                    <div class="coupon-discount">x2</div>
+                    <button class="coupon-copy" onclick="copyCoupon('DOUBLEPOINTS')">
+                        <i class="fas fa-copy"></i> نسخ
+                    </button>
+                </div>
+                
+                <!-- Coupon 5 -->
+                <div class="coupon-card" data-aos="fade-up" data-aos-delay="400">
+                    <div class="coupon-icon">
+                        <i class="fas fa-snowflake"></i>
+                    </div>
+                    <div class="coupon-info">
+                        <h3>خصم الشتاء</h3>
+                        <p>خصم كبير في فصل الشتاء على جميع الألعاب</p>
+                        <span class="coupon-code">WINTER25</span>
+                    </div>
+                    <div class="coupon-discount">-25%</div>
+                    <button class="coupon-copy" onclick="copyCoupon('WINTER25')">
+                        <i class="fas fa-copy"></i> نسخ
+                    </button>
+                </div>
+                
+                <!-- Coupon 6 -->
+                <div class="coupon-card" data-aos="fade-up" data-aos-delay="500">
+                    <div class="coupon-icon">
+                        <i class="fas fa-birthday-cake"></i>
+                    </div>
+                    <div class="coupon-info">
+                        <h3>هدية عيد الميلاد</h3>
+                        <p>خصم خاص في عيد ميلادك</p>
+                        <span class="coupon-code">BDAYGIFT</span>
+                    </div>
+                    <div class="coupon-discount">-40%</div>
+                    <button class="coupon-copy" onclick="copyCoupon('BDAYGIFT')">
+                        <i class="fas fa-copy"></i> نسخ
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter-section">
+        <div class="container">
+            <div class="newsletter-content" data-aos="fade-up">
+                <h2>اشترك للحصول على كوبونات حصرية</h2>
+                <p>احصل على أحدث الكوبونات والخصومات في بريدك الإلكتروني</p>
+                <form class="newsletter-form" id="newsletterForm">
+                    <input type="email" placeholder="بريدك الإلكتروني" required>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-bell"></i>
+                        اشتراك
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <a href="index.html" class="footer-logo">
+                        <span class="logo-icon">🎮</span>
+                        <span class="logo-text">سيمانيا</span>
+                    </a>
+                    <p>منصتك الأولى للألعاب والترفيه. نوفر لك أفضل الألعاب مع تقييمات حقيقية من مجتمع اللاعبين.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>روابط سريعة</h4>
+                    <ul>
+                        <li><a href="index.html">الرئيسية</a></li>
+                        <li><a href="games.html">الألعاب</a></li>
+                        <li><a href="coupon.html">الكوبونات</a></li>
+                        <li><a href="contact.html">اتصل بنا</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>المعلومات</h4>
+                    <ul>
+                        <li><a href="privacy.html">سياسة الخصوصية</a></li>
+                        <li><a href="#">الشروط والأحكام</a></li>
+                        <li><a href="#">الأسئلة الشائعة</a></li>
+                        <li><a href="#">الدعم الفني</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>اتصل بنا</h4>
+                    <ul class="contact-info">
+                        <li><i class="fas fa-envelope"></i> info@simania.com</li>
+                        <li><i class="fas fa-phone"></i> +1234567890</li>
+                        <li><i class="fas fa-map-marker-alt"></i> عالم الإنترنت</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 سيمانيا. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast Notifications -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loader"></div>
+    </div>
+
+    <!-- AOS Animation Script -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <!-- Main JavaScript -->
+    <script type="module" src="assets/index.js"></script>
+    
+    <!-- Auth JavaScript -->
+    <script type="module" src="assets/auth.js"></script>
+    
+    <!-- Coupon JavaScript -->
+    <script>
+        function copyCoupon(code) {
+            navigator.clipboard.writeText(code).then(() => {
+                showToast('تم نسخ الكوبون: ' + code, 'success');
+            }).catch(() => {
+                showToast('فشل نسخ الكوبون', 'error');
+            });
+        }
+        
+        function showToast(message, type = 'info') {
+            const toastContainer = document.getElementById('toastContainer');
+            if (!toastContainer) return;
+            
+            const toast = document.createElement('div');
+            toast.className = `toast ${type}`;
+            toast.innerHTML = `
+                <i class="fas fa-${type === 'success' ? 'check-circle' : type === 'error' ? 'exclamation-circle' : 'info-circle'}"></i>
+                <span>${message}</span>
+            `;
+            
+            toastContainer.appendChild(toast);
+            
+            setTimeout(() => {
+                toast.remove();
+            }, 5000);
+        }
+    </script>
+</body>
+</html>

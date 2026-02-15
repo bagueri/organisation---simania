@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الألعاب - سيمانيا</title>
+    <meta name="description" content="استكشف مجموعة متنوعة من الألعاب الأكثر شعبية على منصة سيمانيا">
+    <meta name="keywords" content="ألعاب, العاب, العاب كمبيوتر, العاب اندرويد, العاب فيديو">
+    <meta name="author" content="Simania">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/icons/favicon.png">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/style.css">
+    <link rel="stylesheet" href="assets/responsive.css">
+    
+    <!-- Firebase SDK -->
+    <script type="module" src="assets/firebase-config.js"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <span class="logo-icon">🎮</span>
+                <span class="logo-text">سيمانيا</span>
+            </a>
+            
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="nav-link">الرئيسية</a></li>
+                <li><a href="games.html" class="nav-link active">الألعاب</a></li>
+                <li><a href="coupon.html" class="nav-link">الكوبونات</a></li>
+                <li><a href="contact.html" class="nav-link">اتصل بنا</a></li>
+                <li class="mobile-only" id="mobileAuth">
+                    <a href="login.html" class="nav-link">تسجيل الدخول</a>
+                </li>
+            </ul>
+            
+            <div class="nav-actions">
+                <div class="user-menu" id="userMenu" style="display: none;">
+                    <button class="user-btn" id="userBtn">
+                        <img src="assets/icons/default-avatar.png" alt="Profile" id="userAvatar">
+                        <span id="userName">المستخدم</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="dropdown-menu" id="dropdownMenu">
+                        <a href="settings.html"><i class="fas fa-cog"></i> الإعدادات</a>
+                        <a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> تسجيل الخروج</a>
+                    </div>
+                </div>
+                <a href="login.html" class="btn-login" id="loginBtn">تسجيل الدخول</a>
+                <button class="mobile-toggle" id="mobileToggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1 data-aos="fade-up">الألعاب <span class="highlight">المشهورة</span></h1>
+            <p data-aos="fade-up" data-aos-delay="200">استكشف مجموعة متنوعة من الألعاب الأكثر شعبية في العالم</p>
+        </div>
+    </section>
+
+    <!-- Games Section -->
+    <section class="games-section">
+        <div class="container">
+            <!-- Category Filter -->
+            <div class="games-filter" data-aos="fade-up">
+                <button class="filter-btn active" data-category="all">الكل</button>
+                <button class="filter-btn" data-category="battle-royale">Battle Royale</button>
+                <button class="filter-btn" data-category="moba">MOBA</button>
+                <button class="filter-btn" data-category="fps">FPS</button>
+                <button class="filter-btn" data-category="open-world">عالم مفتوح</button>
+                <button class="filter-btn" data-category="sandbox">Sandbox</button>
+                <button class="filter-btn" data-category="multiplayer">多人</button>
+                <button class="filter-btn" data-category="platform">منصات</button>
+            </div>
+            
+            <!-- Search -->
+            <div class="games-search" data-aos="fade-up">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="searchInput" placeholder="ابحث عن لعبة...">
+                </div>
+            </div>
+            
+            <!-- Games Grid -->
+            <div class="games-grid" id="gamesGrid">
+                <!-- Games will be loaded dynamically -->
+            </div>
+            
+            <!-- Load More -->
+            <div class="text-center mt-4">
+                <button class="btn btn-outline" id="loadMoreBtn">
+                    <i class="fas fa-plus"></i>
+                    تحميل المزيد
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter-section">
+        <div class="container">
+            <div class="newsletter-content" data-aos="fade-up">
+                <h2>اشترك في نشرتنا الإخبارية</h2>
+                <p>احصل على آخر الأخبار والعروض الحصرية مباشرة في بريدك الإلكتروني</p>
+                <form class="newsletter-form" id="newsletterForm">
+                    <input type="email" placeholder="بريدك الإلكتروني" required>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-bell"></i>
+                        اشتراك
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <a href="index.html" class="footer-logo">
+                        <span class="logo-icon">🎮</span>
+                        <span class="logo-text">سيمانيا</span>
+                    </a>
+                    <p>منصتك الأولى للألعاب والترفيه. نوفر لك أفضل الألعاب مع تقييمات حقيقية من مجتمع اللاعبين.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>روابط سريعة</h4>
+                    <ul>
+                        <li><a href="index.html">الرئيسية</a></li>
+                        <li><a href="games.html">الألعاب</a></li>
+                        <li><a href="coupon.html">الكوبونات</a></li>
+                        <li><a href="contact.html">اتصل بنا</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>المعلومات</h4>
+                    <ul>
+                        <li><a href="privacy.html">سياسة الخصوصية</a></li>
+                        <li><a href="#">الشروط والأحكام</a></li>
+                        <li><a href="#">الأسئلة الشائعة</a></li>
+                        <li><a href="#">الدعم الفني</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>اتصل بنا</h4>
+                    <ul class="contact-info">
+                        <li><i class="fas fa-envelope"></i> info@simania.com</li>
+                        <li><i class="fas fa-phone"></i> +1234567890</li>
+                        <li><i class="fas fa-map-marker-alt"></i> عالم الإنترنت</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 سيمانيا. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast Notifications -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loader"></div>
+    </div>
+
+    <!-- AOS Animation Script -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <!-- Main JavaScript -->
+    <script type="module" src="assets/index.js"></script>
+    
+    <!-- Auth JavaScript -->
+    <script type="module" src="assets/auth.js"></script>
+    
+    <!-- Reviews JavaScript -->
+    <script type="module" src="assets/reviews.js"></script>
+    
+    <!-- Games Page JavaScript -->
+    <script type="module">
+        import { games } from './reviews.js';
+        
+        // Filter games
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const gamesGrid = document.getElementById('gamesGrid');
+        const searchInput = document.getElementById('searchInput');
+        
+        function renderGames(gamesToRender) {
+            if (!gamesGrid) return;
+            
+            gamesGrid.innerHTML = gamesToRender.map(game => `
+                <div class="game-card" data-aos="fade-up">
+                    <div class="game-image">
+                        <img src="${game.image}" alt="${game.title}" loading="lazy">
+                        <span class="game-badge">${game.badge}</span>
+                    </div>
+                    <div class="game-content">
+                        <h3 class="game-title">${game.title}</h3>
+                        <p class="game-description">${game.description}</p>
+                        <div class="game-meta">
+                            <div class="game-rating">
+                                <i class="fas fa-star"></i>
+                                <span>${game.rating}</span>
+                                <span style="opacity: 0.6">(${game.reviews})</span>
+                            </div>
+                        </div>
+                        <div class="game-actions">
+                            <button class="btn btn-primary" onclick="showGameDetails(${game.id})">
+                                <i class="fas fa-info-circle"></i> التفاصيل
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+        
+        // Filter button click
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                const category = btn.dataset.category;
+                if (category === 'all') {
+                    renderGames(games);
+                } else {
+                    const filtered = games.filter(g => g.category === category);
+                    renderGames(filtered);
+                }
+            });
+        });
+        
+        // Search
+        if (searchInput) {
+            searchInput.addEventListener('input', (e) => {
+                const searchTerm = e.target.value.toLowerCase();
+                const filtered = games.filter(g => 
+                    g.title.toLowerCase().includes(searchTerm) || 
+                    g.titleEn.toLowerCase().includes(searchTerm) ||
+                    g.description.toLowerCase().includes(searchTerm)
+                );
+                renderGames(filtered);
+            });
+        }
+        
+        // Initial render
+        renderGames(games);
+    </script>
+</body>
+</html>

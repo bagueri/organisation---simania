@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منظمة سيمانيا-organisation simania</title>
+    <meta name="description" content="منصة سيمانيا - أفضل منصة للألعاب والترفيه مع تقييمات حقيقية من المستخدمين">
+    <meta name="keywords" content="ألعاب, ترفيه, سيمانيا, تقييمات, مراجعات">
+    <meta name="author" content="Simania">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/icons/favicon.png">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/style.css">
+    <link rel="stylesheet" href="assets/responsive.css">
+    
+    <!-- Firebase SDK -->
+    <script type="module" src="assets/firebase-config.js"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <span class="logo-icon">🎮</span>
+                <span class="logo-text">منظمة سيمانيا</span>
+            </a>
+            
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="nav-link active">الرئيسية</a></li>
+                <li><a href="games.html" class="nav-link">الألعاب</a></li>
+                <li><a href="coupon.html" class="nav-link">الكوبونات</a></li>
+                <li><a href="contact.html" class="nav-link">اتصل بنا</a></li>
+                <li class="mobile-only" id="mobileAuth">
+                    <a href="login.html" class="nav-link">تسجيل الدخول</a>
+                </li>
+            </ul>
+            
+            <div class="nav-actions">
+                <div class="user-menu" id="userMenu" style="display: none;">
+                    <button class="user-btn" id="userBtn">
+                        <img src="assets/icons/default-avatar.png" alt="Profile" id="userAvatar">
+                        <span id="userName">المستخدم</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="dropdown-menu" id="dropdownMenu">
+                        <a href="settings.html"><i class="fas fa-cog"></i> الإعدادات</a>
+                        <a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> تسجيل الخروج</a>
+                    </div>
+                </div>
+                <a href="login.html" class="btn-login" id="loginBtn">تسجيل الدخول</a>
+                <button class="mobile-toggle" id="mobileToggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="hero-background">
+            <div class="hero-particles" id="particles"></div>
+            <div class="hero-gradient"></div>
+        </div>
+        <div class="hero-content">
+            <h1 class="hero-title" data-aos="fade-up" data-aos-duration="1000">
+                مرحباً بك في <span class="highlight">سيمانيا</span>
+            </h1>
+            <p class="hero-subtitle" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
+                 منصتك الالى لشحن الالعاب في منظمة سيمانيا للشحن لسرفر العربي
+            </p>
+            <div class="hero-buttons" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">
+                <a href="games.html" class="btn btn-primary">
+                    <i class="fas fa-gamepad"></i>
+                    اكتشف الألعاب
+                </a>
+                <a href="#reviews" class="btn btn-secondary">
+                    <i class="fas fa-star"></i>
+                    شاهد التقييمات
+                </a>
+            </div>
+            <div class="hero-stats" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="600">
+                <div class="stat-item">
+                    <span class="stat-number" data-count="150">0</span>
+                    <span class="stat-label">لعبة</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" data-count="5000">0</span>
+                    <span class="stat-label">مستخدم</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" data-count="10000">0</span>
+                    <span class="stat-label">تقييم</span>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-down" onclick="scrollToSection('games')">
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </section>
+
+    <!-- Games Section -->
+    <section class="games-section" id="games">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2 class="section-title">الألعاب <span class="highlight">المشهورة</span></h2>
+                <p class="section-subtitle">استكشفمجموعة متنوعة من الألعاب الأكثر شعبية</p>
+            </div>
+            
+            <div class="games-grid" id="gamesGrid">
+                <!-- Games will be loaded dynamically -->
+            </div>
+            
+            <div class="text-center mt-4">
+                <a href="games.html" class="btn btn-outline">
+                    عرض جميع الألعاب
+                    <i class="fas fa-arrow-left"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section" id="features">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2 class="section-title">لماذا <span class="highlight">سيمانيا؟</span></h2>
+                <p class="section-subtitle">نقدم لك أفضل التجربة في عالم الألعاب</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>أمان وموثوقية</h3>
+                    <p>حماية بياناتك بأعلى معايير الأمان مع التحقق من البريد الإلكتروني</p>
+                </div>
+                
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="feature-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h3>تقييمات حقيقية</h3>
+                    <p>شارك تجربتك مع الألعاب واكتشف آراء الآخرين من مجتمع اللاعبين</p>
+                </div>
+                
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="feature-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>تصميم متجاوب</h3>
+                    <p>استمتع بتجربة سلسة على جميع الأجهزة والشاشات</p>
+                </div>
+                
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="400">
+                    <div class="feature-icon">
+                        <i class="fas fa-gift"></i>
+                    </div>
+                    <h3>كوبونات حصرية</h3>
+                    <p>احصل على خصومات وكوبونات حصرية لأفضل الألعاب</p>
+                </div> 
+                
+                 <div class="feature-card" data-aos="fade-up" data-aos-delay="400">
+                    <div class="feature-icon">
+                        <i class="fas fa-gift"></i>
+                    </div>
+                    <h3>الشحن السريع</h3>
+                    <p>استمتع مع الشحن و تخفيضات اسبوعيا </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section class="reviews-section" id="reviews">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2 class="section-title">تقييمات <span class="highlight">المستخدمين</span></h2>
+                <p class="section-subtitle">شاهد ما يقوله لاعبون آخرون عن تجربتهم</p>
+            </div>
+            
+            <div class="reviews-container" id="reviewsContainer">
+                <!-- Reviews will be loaded dynamically -->
+            </div>
+            
+            <div class="add-review-section" id="addReviewSection">
+                <h3>أضف تقييمك</h3>
+                <div class="star-rating" id="starRating">
+                    <i class="fas fa-star" data-rating="1"></i>
+                    <i class="fas fa-star" data-rating="2"></i>
+                    <i class="fas fa-star" data-rating="3"></i>
+                    <i class="fas fa-star" data-rating="4"></i>
+                    <i class="fas fa-star" data-rating="5"></i>
+                </div>
+                <textarea id="reviewText" placeholder="اكتب تجربتك مع اللعبة..."></textarea>
+                <button class="btn btn-primary" id="submitReview">
+                    <i class="fas fa-paper-plane"></i>
+                    إرسال التقييم
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter-section">
+        <div class="container">
+            <div class="newsletter-content" data-aos="fade-up">
+                <h2>اشترك في نشرتنا الإخبارية</h2>
+                <p>احصل على آخر الأخبار والعروض الحصرية مباشرة في بريدك الإلكتروني</p>
+                <form class="newsletter-form" id="newsletterForm">
+                    <input type="email" placeholder="بريدك الإلكتروني" required>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-bell"></i>
+                        اشتراك
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <a href="index.html" class="footer-logo">
+                        <span class="logo-icon">🎮</span>
+                        <span class="logo-text">سيمانيا</span>
+                    </a>
+                    <p>منصتك الأولى للألعاب والترفيه. نوفر لك أفضل الألعاب مع تقييمات حقيقية من مجتمع اللاعبين.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>روابط سريعة</h4>
+                    <ul>
+                        <li><a href="index.html">الرئيسية</a></li>
+                        <li><a href="games.html">الألعاب</a></li>
+                        <li><a href="coupon.html">الكوبونات</a></li>
+                        <li><a href="contact.html">اتصل بنا</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>المعلومات</h4>
+                    <ul>
+                        <li><a href="privacy.html">سياسة الخصوصية</a></li>
+                        <li><a href="#">الشروط والأحكام</a></li>
+                        <li><a href="#">الأسئلة الشائعة</a></li>
+                        <li><a href="#">الدعم الفني</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>اتصل بنا</h4>
+                    <ul class="contact-info">
+                        <li><i class="fas fa-envelope"></i>simaniaorganisation@gmail.com</li>
+                        <li><i class="fas fa-phone"></i> +212 651-149570</li>
+                        <li><i class="fas fa-map-marker-alt"></i> العالم الرقمي</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; منظمة سيمانيا. جميع الحقوق محفوظة</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast Notifications -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loader"></div>
+    </div>
+
+    <!-- AOS Animation Script -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <!-- Main JavaScript -->
+    <script type="module" src="assets/index.js"></script>
+    
+    <!-- Auth JavaScript -->
+    <script type="module" src="assets/auth.js"></script>
+    
+    <!-- Reviews JavaScript -->
+    <script type="module" src="assets/reviews.js"></script>
+</body>
+</html>
